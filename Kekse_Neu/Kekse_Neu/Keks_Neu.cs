@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kekse
+namespace Kekse_Neu
 {
-    public class Projekt_Keks
+    public class Keks_Neu
     {
     }
 }
