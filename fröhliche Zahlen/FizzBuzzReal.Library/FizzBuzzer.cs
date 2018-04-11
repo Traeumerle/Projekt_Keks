@@ -9,9 +9,8 @@ namespace FizzBuzzReal.Library
     public class FizzBuzzer
     {
         
-        public static string zahlen_Testen(string x)
+        public static string Zahlen_Testen(string x)
         {
-
             double xy;
             do
             {
@@ -21,7 +20,6 @@ namespace FizzBuzzReal.Library
                     string substringZahl = x.Substring(i, 1);
                     xy += Math.Pow(Convert.ToDouble(substringZahl), 2);
                 }
-                //Console.WriteLine(xy);
                 x = Convert.ToString(xy);
             } while (xy != 1 && xy != 4);
             return x;

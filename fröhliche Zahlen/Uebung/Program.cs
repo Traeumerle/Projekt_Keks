@@ -11,7 +11,7 @@ namespace Uebung
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(FizzBuzzer.zahlen_Testen("34"));
+            Console.WriteLine(FizzBuzzer.Zahlen_Testen("34"));
 
             Console.ReadLine();
         }

@@ -36,5 +36,14 @@ namespace FizzBuzzReal.Library
 
             return Werte;
         }
+
+        public static void Wert_ausgeben(Dictionary<int, string> Kekse)
+        {
+            
+            foreach (KeyValuePair<int, string> item in Kekse)
+            {
+                Console.WriteLine(item.Value);
+            }
+        }
     }
 }

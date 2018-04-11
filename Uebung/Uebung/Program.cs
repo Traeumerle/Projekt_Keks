@@ -16,14 +16,11 @@ namespace Uebung
             Console.WriteLine("Bitte Obergrenze angeben: ");
             int obergrenze = Convert.ToInt32(Console.ReadLine());
 
-
             var Kekse = FizzBuzzer.dicterstellen(untergrenze, obergrenze);
-            foreach (KeyValuePair<int, string> item in Kekse)
-            {
-                Console.WriteLine(item.Value);
-            }
-                
-            
+
+
+
+
             Console.ReadLine();
         }
     }

@@ -17,7 +17,7 @@ namespace FizzBuzz.Library.Tests
         {
             //Arrange
             //Act
-            string output = FizzBuzzer.zahlen_Testen(input);
+            string output = FizzBuzzer.Zahlen_Testen(input);
 
             //Assert
             Assert.AreEqual(output, "1");
@@ -28,7 +28,7 @@ namespace FizzBuzz.Library.Tests
         {
             //Arrange
             //Act
-            string output = FizzBuzzer.zahlen_Testen(input);
+            string output = FizzBuzzer.Zahlen_Testen(input);
 
             //Assert
             Assert.AreEqual(output, "4");
