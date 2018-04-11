@@ -9,31 +9,22 @@ namespace FizzBuzzReal.Library
     public class FizzBuzzer
     {
         
-        public static int zahlen_Testen(string x)
+        public static string zahlen_Testen(string x)
         {
-           x = "23";
-            int y = x.Length;
-            int start = 1;
-            int length = 1;
-            for (int i = start; i <= y; i++)
+
+            double xy;
+            do
             {
-                String substringZahl = x.Substring(start, length);
-                Math.Sqrt(Convert.ToInt32(substringZahl));
-                Console.WriteLine(substringZahl);
-            }
-            Console.ReadLine();
-           
-            
-            //while(x != "1" || x != "4")
-            //{
-               
-            //    Math.Sqrt(Convert.ToInt32(x));
-            //}
-
-
-            return Convert.ToInt32(x);
-
-
+                xy = 0;
+                for (int i = 0; i < x.Length; i++)
+                {
+                    string substringZahl = x.Substring(i, 1);
+                    xy += Math.Pow(Convert.ToDouble(substringZahl), 2);
+                }
+                //Console.WriteLine(xy);
+                x = Convert.ToString(xy);
+            } while (xy != 1 && xy != 4);
+            return x;
         }
      
     }

@@ -13,14 +13,25 @@ namespace FizzBuzz.Library.Tests
     {
 
         [Test]
-        public void test()
+        public void test_fröhlich([Values("1", "100", "7", "97", "44", "49")]string input)
         {
             //Arrange
             //Act
-            int output = FizzBuzzer.zahlen_Testen("10");
-            Convert.ToString(output);
-            //Assert
+            string output = FizzBuzzer.zahlen_Testen(input);
 
+            //Assert
+            Assert.AreEqual(output, "1");
+        }
+
+        [Test]
+        public void test_unfröhlich([Values("11", "99", "8", "25", "47", "34")]string input)
+        {
+            //Arrange
+            //Act
+            string output = FizzBuzzer.zahlen_Testen(input);
+
+            //Assert
+            Assert.AreEqual(output, "4");
         }
 
 
@@ -54,3 +65,4 @@ namespace FizzBuzz.Library.Tests
         //    }
         //}
     }
+}
