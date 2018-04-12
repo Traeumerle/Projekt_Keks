@@ -8,17 +8,15 @@ namespace To_Roman_Numerals
 {
     public class Roman_Numerals
     {
-
-
         public static string Zahl_Uebersetzen(int zahl)
         {
 
-            string fertige_Zahl = "";
+            var fertige_Zahl = "";
+            
             //Tausender
             fertige_Zahl += Tausender_Uebersetzen(zahl);
 
             //Hunderter
-
             fertige_Zahl += Hunderter_Uebersetzen(zahl);
 
             //Zehner
@@ -27,17 +25,36 @@ namespace To_Roman_Numerals
             //Einer
             fertige_Zahl += Einer_Uebersetzen(zahl);
 
+            fertige_Zahl = dreitausend(zahl, fertige_Zahl);
 
             return fertige_Zahl;
         }
 
-        
+
+        public static string dreitausend(int zahl, string fertige_Zahl)
+        {
+            if (zahl > 3000)
+            {
+                fertige_Zahl = "Die Zahl ist zu groß!";
+            }
+            return fertige_Zahl;
+        }
+
         internal static string Tausender_Uebersetzen(int zahl)
         {
             string fertige_Zahl = "";
-            if (Tausender_Testen(zahl) < 4)
+            var tausender_zahl = Tausender_Testen(zahl);
+
+
+            return Tausender_Zuweisung(tausender_zahl, fertige_Zahl);
+        }
+
+        internal static string Tausender_Zuweisung(int tausender_zahl,string fertige_Zahl)
+        {
+
+            if (tausender_zahl < 4)
             {
-                for (int i = 0; i < Tausender_Testen(zahl); i++)
+                for (int i = 0; i < tausender_zahl; i++)
                 {
                     fertige_Zahl += "M";
                 }
@@ -46,38 +63,45 @@ namespace To_Roman_Numerals
             {
                 fertige_Zahl = "Fehler. Die Zahl ist zu groß";
             }
-
             return fertige_Zahl;
         }
 
         internal static string Hunderter_Uebersetzen(int zahl)
         {
             string fertige_Zahl = "";
-            if (Hunderter_Testen(zahl) < 4)
+            var hunderter_zahl = Hunderter_Testen(zahl);
+
+            return Hunderter_Zuweisung(hunderter_zahl, fertige_Zahl);
+        }
+
+        internal static string Hunderter_Zuweisung(int hunderter_zahl, string fertige_Zahl)
+        {
+            
+            if (hunderter_zahl < 4)
             {
-                for (int i = 0; i < Hunderter_Testen(zahl); i++)
+                for (int i = 0; i < hunderter_zahl; i++)
                 {
                     fertige_Zahl += "C";
                 }
             }
-            else if (Hunderter_Testen(zahl) == 4)
+            else if (hunderter_zahl == 4)
             {
                 fertige_Zahl += "CD";
             }
-            else if (Hunderter_Testen(zahl) == 5)
+            else if (hunderter_zahl == 5)
             {
                 fertige_Zahl += "D";
             }
-            else if (Hunderter_Testen(zahl) > 5 && Hunderter_Testen(zahl) < 9)
+            else if (hunderter_zahl > 5 && hunderter_zahl < 9)
             {
-                var ueberfive = Hunderter_Testen(zahl) - 5;
+                var ueberfive = hunderter_zahl - 5;
                 fertige_Zahl += "D";
                 for (int i = 0; i < ueberfive; i++)
                 {
                     fertige_Zahl += "C";
                 }
             }
-            else if (Hunderter_Testen(zahl) == 9)
+            else if (hunderter_zahl == 9)
             {
                 fertige_Zahl += "CM";
             }
@@ -85,34 +109,44 @@ namespace To_Roman_Numerals
             return fertige_Zahl;
         }
 
+
+
+
         internal static string Zehner_Uebersetzen(int zahl)
         {
             string fertige_Zahl = "";
-            if (Zehner_Testen(zahl) < 4)
+            var Zehner_zahl = Zehner_Testen(zahl);
+
+            return Zehner_Zuweisung(Zehner_zahl, fertige_Zahl);
+        }
+
+        internal static string Zehner_Zuweisung(int zehner_zahl, string fertige_Zahl)
+        {
+            if (zehner_zahl < 4)
             {
-                for (int i = 0; i < Zehner_Testen(zahl); i++)
+                for (int i = 0; i < zehner_zahl; i++)
                 {
                     fertige_Zahl += "X";
                 }
             }
-            else if (Zehner_Testen(zahl) == 4)
+            else if (zehner_zahl == 4)
             {
                 fertige_Zahl += "XL";
             }
-            else if (Zehner_Testen(zahl) == 5)
+            else if (zehner_zahl == 5)
             {
                 fertige_Zahl += "L";
             }
-            else if (Zehner_Testen(zahl) > 5 && Zehner_Testen(zahl) < 9)
+            else if (zehner_zahl > 5 && zehner_zahl < 9)
             {
-                var ueberfive = Zehner_Testen(zahl) - 5;
+                var ueberfive = zehner_zahl - 5;
                 fertige_Zahl += "L";
                 for (int i = 0; i < ueberfive; i++)
                 {
                     fertige_Zahl += "X";
                 }
             }
-            else if (Zehner_Testen(zahl) == 9)
+            else if (zehner_zahl == 9)
             {
                 fertige_Zahl += "XC";
             }
@@ -127,31 +161,38 @@ namespace To_Roman_Numerals
         internal static string Einer_Uebersetzen(int zahl)
         {
             string fertige_Zahl = "";
-            if (Einer_Testen(zahl) < 4)
+            var Einer_zahl = Einer_Testen(zahl);
+
+            return Einer_Zuweisung(Einer_zahl, fertige_Zahl);
+        }
+
+        internal static string Einer_Zuweisung(int einer_zahl, string fertige_Zahl)
+        {
+            if (einer_zahl < 4)
             {
-                for (int i = 0; i < Einer_Testen(zahl); i++)
+                for (int i = 0; i < einer_zahl; i++)
                 {
                     fertige_Zahl += "I";
                 }
             }
-            else if (Einer_Testen(zahl) == 4)
+            else if (einer_zahl == 4)
             {
                 fertige_Zahl += "IV";
             }
-            else if (Einer_Testen(zahl) == 5)
+            else if (einer_zahl == 5)
             {
                 fertige_Zahl += "V";
             }
-            else if (Einer_Testen(zahl) > 5 && Einer_Testen(zahl) < 9)
+            else if (einer_zahl > 5 && einer_zahl < 9)
             {
-                var ueberfive = Einer_Testen(zahl) - 5;
+                var ueberfive = einer_zahl - 5;
                 fertige_Zahl += "V";
                 for (int i = 0; i < ueberfive; i++)
                 {
                     fertige_Zahl += "I";
                 }
             }
-            else if (Einer_Testen(zahl) == 9)
+            else if (einer_zahl == 9)
             {
                 fertige_Zahl += "IX";
             }
