@@ -11,9 +11,50 @@ namespace russische_Bauermultiplikation_Code
         public static void Main(string[] args)
         {
 
-            var x = russische_Bauern_übersetzen(47, 42);
-            Russisch_ausgeben(x);
+            looping(47,42);
+            
+
+            
         }
+
+
+        public static Dictionary<int, int> russische_Bauern_loop(int x, int y)
+        {
+            Dictionary<int, int> Russisch = new Dictionary<int, int>();
+
+            Russisch =  russische_Bauern_einleitung(x = X_Berechnung(x), y = Y_Berechnung(y));
+            Beenden();
+            russische_Bauern_loop(x, y);
+
+            return Russisch;
+
+        }
+
+        public static void Beenden()
+        {
+
+        }
+
+        public static Dictionary<int, int> looping( int x , int y)
+        {
+            Dictionary<int, int> Russisch = new Dictionary<int, int>();
+
+            russische_Bauern_einleitung(x, y);
+            russische_Bauern_loop(x, y);
+
+            return Russisch;
+        }
+        public static Dictionary<int, int> russische_Bauern_einleitung(int x, int y)
+        {
+            Dictionary<int, int> Russisch = new Dictionary<int, int>();
+
+            russische_Bauern(x, y);
+
+            return Russisch;
+            
+        }
+
+
 
         public static void Russisch_ausgeben(Dictionary<int, int> Kekse)
         {
@@ -24,6 +65,8 @@ namespace russische_Bauermultiplikation_Code
 
             }
         }
+
+        
 
         public static int X_Berechnung(int x)
         {
@@ -36,46 +79,17 @@ namespace russische_Bauermultiplikation_Code
             return y;
         }
 
-        internal static Dictionary<int, int> russische_Bauern_übersetzen(int x, int y)
-        {
 
-
-            return russische_Bauern(x, y);
-        }
-
-
-        internal static int ersterWert(int x, int y)
-        {
-
-            return ersterWert(x, y);
-        }
 
         public static Dictionary<int, int> russische_Bauern(int x, int y)
         {
             Dictionary<int, int> Russisch = new Dictionary<int, int>();
 
-
-            if (x % 2 != 0)
-            {
-                Russisch.Add(x, y);
-                do
-                {
-
-                    x = X_Berechnung(x);
-                    y = Y_Berechnung(y);
-                    if (x % 2 != 0)
-                    {
-                        Russisch.Add(x, y);
-                    }
-                } while (x != 1);
-            }
+            Russisch.Add(x, y);
+            
             return Russisch;
         }
 
-        public void x_verändern(int x)
-        {
-            x = x - x % 2;
-            x = x / 2;
-        }
+
     }
 }
