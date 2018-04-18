@@ -11,7 +11,7 @@ namespace Kalender_Console
     {
         static void Main(string[] args)
         {
-
+            cal();
                
         }
 
@@ -22,10 +22,10 @@ namespace Kalender_Console
             return eingabe;
         }
 
-        public static string cal()
+        public static void cal()
         {
             // first Day of Month
-            var month = new DateTime(2018, 5, 1);
+            var month = new DateTime(1929, 9, 1);
 
             // Month/Year -> DaysofWeek  
             // align year right           
