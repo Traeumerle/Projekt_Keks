@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace russische_Bauermultiplikation_Code
 {
-    public class Class1
+    public class Bauernmultiplikation_Code
     {
         public static void Main(string[] args)
         {
@@ -16,15 +16,22 @@ namespace russische_Bauermultiplikation_Code
 
         }
 
-
-        public static void Russisch_ausgeben(Dictionary<int, int> Kekse)
+        public static int Russisch_Erg(int x, int y)
         {
+            var xy = bearbeite_Bauern(x, y);
+            int xyz = Russisch_ausgeben(xy);
+            return xyz;
+        }
+
+        public static int Russisch_ausgeben(Dictionary<int, int> Kekse)
+        {
+            int erg = 0;
             foreach (KeyValuePair<int, int> item in Kekse)
             {
-
-                Console.WriteLine(item);
-
+                erg += item.Value;
             }
+            //Console.WriteLine(erg);
+            return erg;
         }
 
         public static int X_Berechnung(int x)
