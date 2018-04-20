@@ -1,38 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ToDictionary_Code
 {
     public class ToDictionary_Code
     {
 
-        public static Dictionary<string, string>Dicterstellen(string x)
+        //public static void Main(string[] args)
+        //{
+        //    var x = Uebersetze_DictionaryCase1("a=1;;b=2");
+        //    Dicterstellen(x);
+
+        //}
+
+        public static void Dicterstellen(Dictionary<string, string> todictionary)
+        {
+            foreach (var item in todictionary)
+            {
+                Console.WriteLine("Key: " + item.Key + " Value: " + item.Value);
+            }
+        }
+
+        public static Dictionary<string, string> Uebersetze_DictionaryCase1(string x)
         {
             Dictionary<string, string> ToDictionary = new Dictionary<string, string>();
 
-            string uebersetztes_x = Uebersetze_DictionaryCase1(x);
-            ToDictionary.Add(x, uebersetztes_x);
-
+            string[] y;
+            string[] ly = { string.Empty };
+            string[] split_string = x.Split(new Char[] { ';' });
+            for (int i = 0; i < split_string.Length; i++)
+            {
+                x = split_string[i];
+                y = x.Split(new Char[] { '=' });
+                if (ly[0] != y[0])
+                {
+                    ToDictionary.Add(y[0], y[1]);
+                    ly[0] = y[0];
+                }
+                else
+                {
+                    ToDictionary[y[0]] = y[1];
+                }
+            }
             return ToDictionary;
         }
-
-        public static string Uebersetze_DictionaryCase1(string x)
-        {
-            string[] split_string = x.Split(new Char[] { ';'});
-            return Convert.ToString(split_string);
-        }
-
-        public static void Ausgabe(string x, Dictionary<string, string> Kekse)
-        {
-            foreach (var item in Kekse)
-            {
-                Console.WriteLine(Dicterstellen(x));
-            }
-            
-        }
-
     }
 }
