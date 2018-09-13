@@ -7,13 +7,6 @@ namespace ToDictionary_Code
     public class ToDictionary_Code
     {
 
-        //public static void Main(string[] args)
-        //{
-        //    var x = Uebersetze_DictionaryCase1("a=1;;b=2");
-        //    Dicterstellen(x);
-
-        //}
-
         public static void Dicterstellen(Dictionary<string, string> todictionary)
         {
             foreach (var item in todictionary)
