@@ -56,7 +56,7 @@ namespace Test_Projekt_2Lj
             }
             if (e.KeyCode == Keys.S)
             {
-                if (x +1 <= x1 + 100 && x >= x1 -59 && y-61 <= y1 && y+61 >= y1)
+                if (x+1 <= x1 + 99 && x >= x1 -59 && y <= y1 && y+61 >= y1)
                 {
                     y -= 10;
                 }
@@ -80,7 +80,7 @@ namespace Test_Projekt_2Lj
             }
             if (e.KeyCode == Keys.D)
             {
-                if (x >= x1-61 && x <= x1+101 && y <= y1 +49 && y+59 >= y1   )
+                if (x >= x1-61 && x <= x1+99 && y <= y1 +49 && y+59 >= y1   )
                 {
                     x -= 10;
                 }
