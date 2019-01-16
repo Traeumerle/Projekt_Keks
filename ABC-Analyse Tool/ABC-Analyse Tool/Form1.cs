@@ -30,7 +30,6 @@ namespace ABC_Analyse_Tool
             Form_füllen();
         }
 
-
         private void Form_füllen()
         {
             filler_combo();
@@ -45,6 +44,7 @@ namespace ABC_Analyse_Tool
             Werttrb2.Value = werttrbC;
             güterBLBL.Text = "Güterklasse C: " + Werttrb2.Value + "%";
         }
+
         private void Mysqlconnection()
         {
             tableDB = datentabellenCB.SelectedItem.ToString();
@@ -64,6 +64,7 @@ namespace ABC_Analyse_Tool
             datentabellenCB.Items.Add("verfügbare Datensätze");
             datentabellenCB.SelectedItem = "verfügbare Datensätze";
         }
+
         private void fillcomboBox()
         {  
             con = new MySqlConnection("server=127.0.0.1;DATABASE=stueckliste;uid=root;PASSWORD=;");
@@ -86,6 +87,7 @@ namespace ABC_Analyse_Tool
         {
             datentabellenCB.SelectedIndexChanged += new System.EventHandler(datentabellenCB_SelectedIndexChanged);
         }
+
         private void datentabellenCB_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             if (datentabellenCB.SelectedIndex != 0)
@@ -105,6 +107,13 @@ namespace ABC_Analyse_Tool
             }
         }
 
+        private void ausgabedGV_Sorted(object sender, EventArgs e)
+        {
+            werterrechnen();
+            prozenteerrechnen();
+            rangfolgeFestlegen();
+        }
+
         private void Datagridviewcolumnadd()
         {
             ausgabedGV.Columns.Add(a, a);
@@ -112,7 +121,6 @@ namespace ABC_Analyse_Tool
             ausgabedGV.Columns.Add(c, c);
             ausgabedGV.Columns.Add(d, d);
         }
-
 
         private void werterrechnen()
         {
@@ -123,13 +131,6 @@ namespace ABC_Analyse_Tool
                 menge += Convert.ToInt32(ausgabedGV.Rows[i].Cells["Menge"].Value);
                 wert += Convert.ToInt32(ausgabedGV.Rows[i].Cells["Wert"].Value) * Convert.ToInt32(ausgabedGV.Rows[i].Cells["Menge"].Value);
             }
-        }
-
-        private void ausgabedGV_Sorted(object sender, EventArgs e)
-        {
-            werterrechnen();
-            prozenteerrechnen();
-            rangfolgeFestlegen();
         }
 
         private void prozenteerrechnen()
@@ -164,9 +165,10 @@ namespace ABC_Analyse_Tool
                 }
             }
         }
+
         private void sortiereNachGüterklasse()
         {
-            ausgabedGV.Sort(ausgabedGV.Columns[3], ListSortDirection.Descending);
+            ausgabedGV.Sort(ausgabedGV.Columns["Wert"], ListSortDirection.Descending);
         }
 
         private void WerttrB1_Scroll(object sender, EventArgs e)
@@ -184,7 +186,7 @@ namespace ABC_Analyse_Tool
             güterALBL.Text = "Güterklasse A: " + WerttrB1.Value + "%";
             güterBLBL.Text = "Güterklasse C: " + Werttrb2.Value + "%";
             WerttrB1.Value = 100 - Werttrb2.Value;
-            
+            //werttrbC = Werttrb2.Value;
             rangfolgeFestlegen();
         }
 
@@ -199,9 +201,10 @@ namespace ABC_Analyse_Tool
             if (filepathTB.Text != "" && ausgabedGV.RowCount != 0)
             {
                 PdfPTable pdfTable = new PdfPTable(ausgabedGV.ColumnCount);
-                pdfTable.DefaultCell.Padding = 10;
-                pdfTable.WidthPercentage = 30;
-                pdfTable.HorizontalAlignment = Element.ALIGN_LEFT;
+                float[] widths = new float[] { 30f, 120f, 80f, 80f, 100f, 100f, 100f, 100f };
+                pdfTable.SetWidths(widths);
+                pdfTable.DefaultCell.Padding = 1;
+                pdfTable.WidthPercentage = 100;
                 pdfTable.DefaultCell.BorderWidth = 1;
 
                 //Adding Header row
@@ -228,7 +231,7 @@ namespace ABC_Analyse_Tool
                 }
                 using (FileStream stream = new FileStream(folderPath + filepathTB.Text + ".pdf", FileMode.Create))
                 {
-                    Document pdfDoc = new Document(PageSize.A0, 1f, 1f, 1f, 1f);
+                    Document pdfDoc = new Document(PageSize.A4, 25, 25, 30, 30);
                     PdfWriter.GetInstance(pdfDoc, stream);
                     pdfDoc.Open();
                     pdfDoc.Add(pdfTable);

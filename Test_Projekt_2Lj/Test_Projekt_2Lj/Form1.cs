@@ -8,87 +8,89 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Test_Projekt_2Lj
 {
     public partial class Form1 : Form
     {
-        private int x;
-        private int y;
-        private int x1;
-        private int y1;
-            public Form1()
-        {
-            x = 100;
-            y = 100;
-            x1 = 250;
-            y1 = 250;
-            InitializeComponent();
-            
+        private int anfangplayerX = 100;
+        private int anfangplayerY = 100;
+        private int größeplayerX = 60;
+        private int größeplayerY = 60;
+        private int x1 = 250;
+        private int y1 = 250;
+        private int gx1 = 100;
+        private int gy1 = 50;
 
-            
+        public Form1()
+        {
+            InitializeComponent();
         }
 
-        private void button1_KeyPress(object sender, KeyPressEventArgs e)
+        public void genPlayer(object sender, PaintEventArgs e)
         {
-
+            Random zufall = new Random(DateTime.Now.Millisecond);
+            e.Graphics.FillRectangle(Brushes.Firebrick, zufall.Next(0, 901), zufall.Next(0, 601), zufall.Next(0, 100), zufall.Next(0, 100));
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.FillRectangle(Brushes.BlueViolet, x1, y1, 100, 50);
-            e.Graphics.DrawImage(new Bitmap("creeper.jpg"),x,y,60,60);
+
+            genPlayer(sender, e);
+            e.Graphics.DrawImage(new Bitmap("creeper.jpg"), anfangplayerX, anfangplayerY, größeplayerX, größeplayerY);
+
         }
 
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.W)
+            if (e.KeyCode == Keys.W)
             {
-                if (x +1 <= x1 + 100 && x >= x1-59 && y <= y1+50 && y >= y1)
+                //if (anfangplayerX + 1 <= x1 + gx1 && anfangplayerX >= x1 - 59 && anfangplayerY <= y1 + gy1 && anfangplayerY >= y1)
+                //{
+                 //   anfangplayerY += 10;
+                //}
+                if (anfangplayerY <= 0)
                 {
-                    y += 10;
+                    anfangplayerY = 600;
                 }
-                if (y <= 0)
-                {
-                    y = 600;
-                }
-                    y -= 10;
+                anfangplayerY -= 10;
             }
             if (e.KeyCode == Keys.S)
             {
-                if (x+1 <= x1 + 99 && x >= x1 -59 && y <= y1 && y+61 >= y1)
+                ////if (anfangplayerX <= x1 + gx1 - 1 && anfangplayerX >= x1 - 60 && anfangplayerY <= y1 && anfangplayerY + 60 >= y1)
+                ////{
+                 //anfangplayerY -= 10;
+                ////}
+                if (anfangplayerY > 600)
                 {
-                    y -= 10;
+                    anfangplayerY = 0;
                 }
-                if (y > 600)
-                {
-                    y = 0;
-                }
-                    y += 10;
+                anfangplayerY += 10;
             }
             if (e.KeyCode == Keys.A)
             {
-                if (x<=x1+101&& x >= x1 && y <= y1 + 49 && y + 59 >= y1)
+                //if (anfangplayerX <= x1 + gx1 + 1 && anfangplayerX >= x1 && anfangplayerY <= y1 + gy1 - 1 && anfangplayerY + 59 >= y1)
+                //{
+                 //   anfangplayerX += 10;
+                //}
+                if (anfangplayerX <= 0)
                 {
-                    x += 10;
+                    anfangplayerX = 900;
                 }
-                if (x <= 0)
-                {
-                    x = 900;
-                }
-                x -= 10;
+                anfangplayerX -= 10;
             }
             if (e.KeyCode == Keys.D)
             {
-                if (x >= x1-61 && x <= x1+99 && y <= y1 +49 && y+59 >= y1   )
+                //if (anfangplayerX >= x1 - 61 && anfangplayerX <= x1 + gx1 - 1 && anfangplayerY <= y1 + gy1 - 1 && anfangplayerY + 59 >= y1)
+                //{
+                //  anfangplayerX -= 10;
+                //}
+                if (anfangplayerX >= 900)
                 {
-                    x -= 10;
+                    anfangplayerX = 0;
                 }
-                if (x >= 900)
-                {
-                    x = 0;
-                }
-                x += 10;
+                anfangplayerX += 10;
             }
             Invalidate();
         }
